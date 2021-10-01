@@ -1,12 +1,141 @@
 
 <html lang="en">
  <head>
-</head>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+  <style>
+   .map {
+    height: 100%;
+    width: 100%;
+   }
+
+   .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 0%;
+    left: 0%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+   }
+
+   /* Modal Content/Box */
+   .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Could be more or less, depending on screen size */
+	height: 80%
+   }
+
+   /* The Close Button */
+   .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+   }
+
+   .close:hover,
+   .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+   }
+
+   .modalImage {
+    width: auto;
+   }
+  </style>
+  <script class="modalImage" src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+  <title>DDG integration</title>
+ </head>
  <body>
+  <div id="map" class="map"></div>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+   <span class="close">×</span>
    <h2>COWI LYNGBY (HOVEDKONTOR)</h2>
    <!--iframe width="100%" height="80%" src="https://cmv.cowi.com/?origin=desktop&project=DDG+spatial+buffer+testing&vLayers=DDG+2020+Spatial+buffer;Skaermkort_old&assLayers=DDG+2020+Spatial+buffer&dssLayers=Skaermkort_old&maximize=DDG+2020+Spatial+buffer&x=12.507221043060605&y=55.76604218814943&srid=4326&atoken=kmwFkbi5PSULhWEE_mxqs-GUvBZjZ2uiUU4vUlO6yh8AjDSiKpnVyldx8hA54PqdpJELptmndzmlJbCHklZc8nkkCgfT_2Md8uQYMc6H6n5hpWQpGhclcG69JSNDqeY3604pNxaATPTwAiVDnz8bsa3Vo0OBGqTHs9QgRZu5Bei-EuYYdhOqb_0dWgj8BjVQ-oUiw_Yld6Vacbzy9V4onTaV30M6uFlxCU-_l3xfawypaqIIbr8GKPmsUtFBoeaaBvOSGe0ivz3cAYPE4558h2iZ0MVZqtqZDz68K7lMKI7NxgSnFObjQovD8h6Zg3P_S5BeXRDwMMeL0ETP8kpTwDIvJ2tipmOEp_-6STSxOzZb_XRoTRb3Rpi2wDJ-5c8ExPsWrwo5tP_Neq2o2nziyP8KgtPsEPcm9U2tZgKCCtbPs05B77vciP2KprbgOMt7t63QhbtIE0hborb9cceYBHEnEbRpWtz_CLUpINfl0L32R39feJfa2IsmbI5xyIV6BCU-0TDbTWa_WjVO48cYco93OLP_Fr6_QYGo-4pIl3NX2vLqXMbJaokNM2p2LFl4KaIbzac-thEDn-_C5UUwKv3UVouKM_loIZasHYFovx8Foe9xyLkwWCmeYoA8uJUitDE_sAmFJNFq-maUYhuYFVhWQipn9RkmI5hJWYDhmga-fydrk3aIUzW5Akqox0T5wj6lRbCa7WqzT2X33u6OAeLVMfosmS5yqr7asBC7Ji-szZit8IzlgXeHRjSkCI7Q8uIy_ZOK64kMhoWrJWFhHqjoB40ZJgPXTLZVZqAPrN0mw_RbXxoA_k59TQMOo07cgcjholxDbE7DguJWo0zH3H6f5_wb4TT18jAYTX4BYxGuItmjsJxnyXV1Ztc7G5YfFBe7OlPxr5SLJO4AQKPOYJSZ46yFUs3QAv4xN59-_ihsOqUEFRzixhcP73XVDMqNdjdYC6ggyheZxYvkH5-IOu484C0NDerYoI0aHWtPGerbIjs2-y78ct-cqlI4fPhSWJm8nl19tpf7GuDFLmlk39AIJ4wuIhe_i4iOIj5UYqz4A8mYKYG18GkA207M1PbFHSFi_yKd351FVzKMEeyLJFmgLTiak5avEImijAx8TylA1HsLKAWB66Z1e7MOVxzpndZGG5tQWEH5RRVcLeJ2MaLOS8AfKFj9FM0zM6Izz_QfMAjbUYmn3sDa9psHsBaLXEd2rc4s0_xIQXd9u6YzGDiNF8u1HMLJ3UT5ayvj95A"></iframe-->
    <iframe width="100%" height="80%" src="https://cmv.cowi.com/?u=COWI_Website_ALSU&p=5542A496&origin=desktop&project=DDG+spatial+buffer+testing&vLayers=DDG+2020+Spatial+buffer;Skaermkort_old&assLayers=DDG+2020+Spatial+buffer&dssLayers=Skaermkort_old&maximize=DDG+2020+Spatial+buffer&x=12.507221043060605&y=55.76604218814943&srid=4326"></iframe>
 
+  </div>
+  <script type="text/javascript">
+   var modal = document.getElementById("myModal");
+   var span = document.getElementsByClassName("close")[0];
+
+   // In a real-life system, we would extract these from a database
+   var coordinates = [12.507022036194194, 55.76625033878721];
+
+   span.onclick = function() {
+    closeModal();
+   }
+
+   // When the user clicks anywhere outside of the modal, close it
+   window.onclick = function(event) {
+    if (event.target == modal)
+     closeModal();
+    }
+
+   function closeModal() {
+    modal.style.display = "none";
+   }
+
+   function createStyle(src, img) {
+    return new ol.style.Style({
+     image: new ol.style.Icon(({
+      anchor: [0.5, 0.96],
+      crossOrigin: 'anonymous',
+      src: src,
+      img: img,
+      imgSize: img ? [img.width, img.height] : undefined
+     }))
+    });
+   }
+
+   var iconFeature = new ol.Feature(new ol.geom.Point(ol.proj.fromLonLat(coordinates)));
+   iconFeature.setId('moonlight');
+   iconFeature.set('style', createStyle('https://openlayers.org/en/latest/examples/data/icon.png', undefined));
+	  
+   var map = new ol.Map({
+    target: 'map',
+    layers: [
+     new ol.layer.Tile({
+      source: new ol.source.OSM()
+     }),
+     new ol.layer.Vector({
+      style: function(feature) {
+       return feature.get('style');
+      },
+      source: new ol.source.Vector({features: [iconFeature]})
+     })
+    ],
+    view: new ol.View({
+     center: ol.proj.fromLonLat(coordinates),
+     zoom: 10
+    })
+   });
+
+   map.on('click', function(event) {
+    map.forEachFeatureAtPixel(event.pixel, function(feature,layer) {
+     if ( feature.getId() == "moonlight" ) {
+      modal.style.display = "block";
+     }
+    });
+   });
+
+   map.on('pointermove', function(evt) {
+    map.getTargetElement().style.cursor =
+     map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
+   });
+
+  </script>
  </body>
 </html>
 		
